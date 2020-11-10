@@ -1,0 +1,59 @@
+.Summary {
+  /* height: 10%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin-top: 60px; */
+  display: flex;
+  padding: 20px 0;
+
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 20%;
+}
+
+.Icon {
+  display: flex;
+
+  align-items: center;
+  margin-right: 20px;
+  justify-content: center;
+}
+
+.Temp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Temp h3 {
+  font-size: 80px;
+}
+
+.Temp p {
+  margin-top: 25px;
+  font-size: 30px;
+}
+
+/* 
+.Temp {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 30px;
+}
+
+.Temp p {
+  margin: 0 0;
+  display: flex;
+}
+*/
+.Summary i {
+  font-size: 100px;
+}
+
+.H3 {
+  font-size: 70px;
+}

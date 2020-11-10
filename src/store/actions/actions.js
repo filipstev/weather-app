@@ -1,0 +1,8 @@
+export const SEND_REQUEST = 'SEND_REQUEST'
+
+export const STORE_DATA = 'STORE_DATA'
+export const SAVE_DATA = 'SAVE_DATA'
+
+export const FETCH_DATA_START = 'FETCH_DATA_START'
+export const FETCH_DATA_FAIL = 'FETCH_DATA_FAIL'
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
