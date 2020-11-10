@@ -7,7 +7,7 @@ const app = express()
 const port = process.env.PORT || 8080
 
 // Define paths for Express config
-const publicDirectoryPath = path.join(__dirname, '..', 'build')
+// const publicDirectoryPath = path.join(__dirname, '..', 'build')
 
 // Setup handlebars engine and views location
 // app.set('view engine', 'hbs')
@@ -19,13 +19,13 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../build')))
   // Handle React routing, return all requests to React app
   app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../../build', 'index.html'))
+    res.sendFile(path.join(__dirname, '../../build/index.html'))
   })
 }
 
 // Setup static directory to serve
-app.use(express.static(publicDirectoryPath))
-app.use(express.static('public'))
+// app.use(express.static(publicDirectoryPath))
+// app.use(express.static('public'))
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "http://localhost:3000/"); // update to match the domain you will make the request from
 //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
