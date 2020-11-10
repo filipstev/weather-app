@@ -7,8 +7,7 @@ const app = express()
 const port = process.env.PORT || 8080
 
 // Define paths for Express config
-const publicDirectoryPath = path.join(__dirname, "../../frontend/weather-app/public" ,'build')
-
+const publicDirectoryPath = path.join(__dirname, '..', 'build')
 
 // Setup handlebars engine and views location
 // app.set('view engine', 'hbs')
@@ -17,18 +16,17 @@ const publicDirectoryPath = path.join(__dirname, "../../frontend/weather-app/pub
 
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
-app.use(express.static("public"))
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000/"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+app.use(express.static('public'))
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "http://localhost:3000/"); // update to match the domain you will make the request from
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });
 
-app.get('/', (req,res) => {
-    // res.sendFile(path.join(__dirname, '../../frontend/weather-app/public' , 'build', 'index.html'))
-    res.send('lol')
-})
-
+// app.get('/', (req, res) => {
+//   // res.sendFile(path.join(__dirname, '../../frontend/weather-app/public' , 'build', 'index.html'))
+//   res.send('lol')
+// })
 
 // app.get('/about', (req,res) => {
 //     res.send('hey')
@@ -42,31 +40,30 @@ app.get('/', (req,res) => {
 //     })
 // })
 
-app.get('/weather/:address', (req,res) => {
-    const address = req.params.address
-    if (!address) {
-        return res.send({
-            error:'You must provide an address!'
-        })
+app.get('/weather/:address', (req, res) => {
+  const address = req.params.address
+  if (!address) {
+    return res.send({
+      error: 'You must provide an address!',
+    })
+  }
+
+  geocode(address, (error, { latitude, longitude, location } = {}) => {
+    if (error) {
+      return res.send({ error: 'EH VRE' })
     }
 
-    geocode(address, (error, { latitude,longitude, location } = {}) => {
-        if(error) {
-            return res.send({ error:'EH VRE' })
-        }
-       
-
-        forecast(latitude, longitude, (error, forecastData) => {
-            if (error) {
-                return res.send({error: 'EEEEEEEEEJ'})
-            }
-            res.send({
-                forecast: forecastData,
-                location,
-                address: req.query.address
-            })
-        })
+    forecast(latitude, longitude, (error, forecastData) => {
+      if (error) {
+        return res.send({ error: 'EEEEEEEEEJ' })
+      }
+      res.send({
+        forecast: forecastData,
+        location,
+        address: req.query.address,
+      })
     })
+  })
 })
 
 // app.get('/products',(req, res) => {
@@ -98,7 +95,6 @@ app.get('/weather/:address', (req,res) => {
 //     })
 // })
 
-
 app.listen(port, () => {
-    console.log('Server is up on port ' + port)
+  console.log('Server is up on port ' + port)
 })
