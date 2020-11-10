@@ -50,6 +50,10 @@ app.get('/weather/:address', (req, res) => {
     })
   }
 
+  if (!!res && res.status === 404) {
+    store.dispatch(push('/'))
+  }
+
   geocode(address, (error, { latitude, longitude, location } = {}) => {
     if (error) {
       return res.send({ error: 'EH VRE' })
