@@ -136,26 +136,28 @@ const Forecast = (props) => {
   }
 
   return (
-    <div className={classes.Wrapper}>
-      <h2 style={{ fontSize: '30px' }}>{location}</h2>
-      <p style={{ fontSize: '25px' }}>{actualTime}</p>
-      <div className={classes.TopDiv}>
-        <Summary
-          icon={classNom}
-          curTemp={currentTemperature}
-          curSumm={currentSummary}
-        />
-        <CombinedData
-          maxTemperature={maxTemp}
-          minTemperature={minTemp}
-          wind={windSpeed}
-          rain={precipProb}
-          sunrise={actualSunrise}
-          sunset={actualSunset}
-        />
+    <React.Fragment>
+      <div className={classes.Wrapper}>
+        <h2 style={{ fontSize: '30px' }}>{location}</h2>
+        <p style={{ fontSize: '25px' }}>{actualTime}</p>
+        <div className={classes.TopDiv}>
+          <Summary
+            icon={classNom}
+            curTemp={currentTemperature}
+            curSumm={currentSummary}
+          />
+          <CombinedData
+            maxTemperature={maxTemp}
+            minTemperature={minTemp}
+            wind={windSpeed}
+            rain={precipProb}
+            sunrise={actualSunrise}
+            sunset={actualSunset}
+          />
+        </div>
+        <div className={classes.Cards}>{cardData}</div>
       </div>
-      <div className={classes.Cards}>{cardData}</div>
-    </div>
+    </React.Fragment>
   )
 }
 
