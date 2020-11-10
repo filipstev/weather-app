@@ -27,7 +27,7 @@ const Forecast = (props) => {
   let cardData = null
 
   if (props.data === null) {
-    return <Redirect to="/" />
+    this.props.history.push('/')
   }
 
   if (props.data.data.forecast === undefined) {
